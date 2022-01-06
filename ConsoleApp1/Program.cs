@@ -94,10 +94,6 @@ namespace ConsoleApp1
             int invalidcount = 0;
             string[] urban;
             string[] rural;
-
-            
-                
-            
                 do
                 {
                     do 
@@ -116,6 +112,10 @@ namespace ConsoleApp1
                 {
                     Console.WriteLine("Please enter a postal code");
                     code[i] = Console.ReadLine();
+                    if (code[i].Length != 6 && code[i].Length != 7)
+                    {
+                        Console.WriteLine("Postal Code invalid size, please input again");
+                    }
                 } while (code[i].Length != 6 && code[i].Length != 7);
             }
 
@@ -133,6 +133,7 @@ namespace ConsoleApp1
                 validcount = 0;
                 int j = 0;
                 int l = 0;
+                if (code[i].Length==6
                 if (isValid(code[i]))
                 {
                     valid = new string[postalcodes];
