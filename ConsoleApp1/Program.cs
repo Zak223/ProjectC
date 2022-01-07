@@ -10,9 +10,20 @@ namespace ConsoleApp1
 {
     class Program
     {
+        private static string addSpace(string[] code, int i)
+        {
+            if (code[3].ToString() != " ")
+            {
+                string tempcode = "";
+                tempcode = code[i];
+                code[i] = tempcode.Insert(3, " ");
+                return code[i];
+            }
+            return code[i];
+        }
         private static bool isUrban(string code)
         {
-            if(code[1] != 1){
+            if(code[1].ToString() != "1"){
                 return true;
             }else
             {
@@ -21,14 +32,9 @@ namespace ConsoleApp1
             
         }
         private static bool isValid(string code)
-        { 
-            if (code.Length == 6)
+        {
+            if (code[0].ToString().CompareTo("A") >= 0 && code[0].ToString().CompareTo("Z") <= 0)
             {
-                String modified = code.Insert(3, " ");
-                code = modified;
-            }
-             if (code[0].ToString().CompareTo("A") >= 0 && code[0].ToString().CompareTo("Z") <= 0)
-             {
                 if (code[0].ToString() != "D" && code[0].ToString() != "F" && code[0].ToString() != "I" &&
                     code[0].ToString() != "O" && code[0].ToString() != "Q" && code[0].ToString() != "U" &&
                     code[0].ToString() != "W" && code[0].ToString() != "Z")
@@ -117,6 +123,11 @@ namespace ConsoleApp1
                         Console.WriteLine("Postal Code invalid size, please input again");
                     }
                 } while (code[i].Length != 6 && code[i].Length != 7);
+
+                if (code[i].Length == 6)
+                {
+                    code[i] = addSpace(code, i);
+                }
             }
 
             for (int i = 0; i != postalcodes; i++)
@@ -133,7 +144,7 @@ namespace ConsoleApp1
                 validcount = 0;
                 int j = 0;
                 int l = 0;
-                if (code[i].Length==6
+                
                 if (isValid(code[i]))
                 {
                     valid = new string[postalcodes];
